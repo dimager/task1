@@ -63,7 +63,7 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
         PreparedStatement preparedStatement = null;
 
         try {
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
+//          connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
             connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_SALADDRESSING_BY_ID);
             preparedStatement.setInt(1, id);
@@ -89,7 +89,7 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
         return saladDressing;
     }
 
-    public List<SaladDressing> findByType(SaladDressingTypes saladDressingType) {
+    public List<SaladDressing> findByType(SaladDressingTypes saladDressingType) throws DaoException {
         List<SaladDressing> saladDressings = new ArrayList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -113,7 +113,7 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
                 saladDressings.add(saladDressing);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException(e);
         } finally {
             close(preparedStatement);
             close(connection);

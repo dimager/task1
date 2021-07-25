@@ -5,23 +5,23 @@ package com.epam.jwd.domain;
 public class Vegetable extends Food {
     private int id;
     private String name;
-    private VegetableTypes vegetableTypes;
+    private VegetableTypes vegetableType;
     private Double fibre;
 
     public Vegetable() {
     }
 
-    public Vegetable(double proteins, double fats, double carbs, double fibre, String name, VegetableTypes vegetableTypes) {
+    public Vegetable(double proteins, double fats, double carbs, double fibre, String name, VegetableTypes vegetableType) {
         super(proteins, fats, carbs);
         this.name = name;
-        this.vegetableTypes = vegetableTypes;
+        this.vegetableType = vegetableType;
         this.fibre = fibre;
     }
 
-    public Vegetable(double proteins, double fats, double carbs, double energy, double fibre, String name, VegetableTypes vegetableTypes) {
+    public Vegetable(double proteins, double fats, double carbs, double energy, double fibre, String name, VegetableTypes vegetableType) {
         super(proteins, fats, carbs, energy);
         this.name = name;
-        this.vegetableTypes = vegetableTypes;
+        this.vegetableType = vegetableType;
         this.fibre = fibre;
     }
 
@@ -33,12 +33,12 @@ public class Vegetable extends Food {
         this.name = name;
     }
 
-    public VegetableTypes getVegetableTypes() {
-        return this.vegetableTypes;
+    public VegetableTypes getVegetableType() {
+        return this.vegetableType;
     }
 
-    public void setVegetableTypes(VegetableTypes vegetableTypes) {
-        this.vegetableTypes = vegetableTypes;
+    public void setVegetableType(VegetableTypes vegetableTypes) {
+        this.vegetableType = vegetableTypes;
     }
 
     public Double getFibre() {
@@ -58,13 +58,14 @@ public class Vegetable extends Food {
     }
 
     public String toString() {
-        return "Vegetable{id=" + this.id +
-                " name='" + this.name + '\'' +
-                " proteins=" + this.proteins +
-                " vegetableTypes=" + this.vegetableTypes +
-                " fats=" + this.fats + " carbs=" + this.carbs +
-                " energy=" + this.energy +
-                " fibre=" + this.fibre + '}' + "\n";
+        return " id = " + this.id +
+                ", name = '" + this.name + '\'' +
+                ", type = " + this.vegetableType +
+                ", proteins = " + String.format("%.2f",this.proteins) +
+                ", fats = " + String.format("%.2f",this.fats) +
+                ", carbs = " + String.format("%.2f",this.carbs) +
+                ", energy = " + String.format("%.2f",this.energy) +
+                ", fibre = " + String.format("%.2f",this.fibre)+"\n";
     }
 
 

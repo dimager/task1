@@ -55,6 +55,12 @@ public class SaladDressing extends Food {
     }
 
     public String toString() {
-        return "SaladDressing{id=" + this.id + " name='" + this.name + '\'' + " saladDressingTypes=" + this.saladDressingTypes + " proteins=" + this.proteins + " fats=" + this.fats + " carbs=" + this.carbs + " energy=" + this.energy + '}' + "\n";
+        return " id = " + this.id +
+                ", name = '" + this.name + '\'' +
+                ", type = " + this.saladDressingTypes +
+                ", proteins = " + this.proteins +
+                ", fats = " + this.fats +
+                ", carbs = " + this.carbs +
+                ", energy = " + this.energy  + "\n";
     }
 }

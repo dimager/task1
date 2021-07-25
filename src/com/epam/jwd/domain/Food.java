@@ -56,7 +56,7 @@ public  class Food implements Serializable, Cloneable {
         this.energy = energy;
     }
 
-    public static double calculateEnergy(double proteins, double fats, double carbs) {
+    private double calculateEnergy(double proteins, double fats, double carbs) {
         return proteins * 4 + fats * 9 + carbs * 4;
     }
 

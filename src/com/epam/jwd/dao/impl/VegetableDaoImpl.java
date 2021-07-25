@@ -36,7 +36,7 @@ public class VegetableDaoImpl implements VegetableDao {
                 Vegetable vegetable = new Vegetable();
                 vegetable.setId(resultSet.getInt(8));
                 vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableTypes(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
+                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
                 vegetable.setProteins(resultSet.getDouble(3));
                 vegetable.setFats(resultSet.getDouble(4));
                 vegetable.setCarbs(resultSet.getDouble(5));
@@ -69,7 +69,7 @@ public class VegetableDaoImpl implements VegetableDao {
             while(resultSet.next()) {
                 vegetable.setId(resultSet.getInt(8));
                 vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableTypes(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
+                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
                 vegetable.setProteins(resultSet.getDouble(3));
                 vegetable.setFats(resultSet.getDouble(4));
                 vegetable.setCarbs(resultSet.getDouble(5));
@@ -101,7 +101,7 @@ public class VegetableDaoImpl implements VegetableDao {
                 Vegetable vegetable = new Vegetable();
                 vegetable.setId(resultSet.getInt(8));
                 vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableTypes(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
+                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
                 vegetable.setProteins(resultSet.getDouble(3));
                 vegetable.setFats(resultSet.getDouble(4));
                 vegetable.setCarbs(resultSet.getDouble(5));
