@@ -58,9 +58,9 @@ public class SaladDressing extends Food {
         return " id = " + this.id +
                 ", name = '" + this.name + '\'' +
                 ", type = " + this.saladDressingTypes +
-                ", proteins = " + this.proteins +
-                ", fats = " + this.fats +
-                ", carbs = " + this.carbs +
-                ", energy = " + this.energy  + "\n";
+                ", proteins = " + getProteins() +
+                ", fats = " + getFats() +
+                ", carbs = " + getCarbs() +
+                ", energy = " + getEnergy()  + "\n";
     }
 }

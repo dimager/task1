@@ -1,11 +1,11 @@
 package com.epam.jwd.domain;
 import java.io.Serializable;
 
-public  class Food implements Serializable, Cloneable {
-    double proteins;
-    double fats;
-    double carbs;
-    double energy;
+public  class Food  {
+    private double proteins;
+    private double fats;
+    private double carbs;
+    private double energy;
 
     public Food(double proteins, double fats, double carbs) {
         this.proteins = proteins;

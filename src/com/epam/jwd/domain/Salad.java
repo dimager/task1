@@ -26,7 +26,6 @@ public class Salad extends Food {
         this.setFibre(this.getVegetableIngredientList().stream().mapToDouble(Vegetable::getFibre).sum());
         this.setWeight(this.getVegetableIngredientList().stream().mapToDouble(VegetableIngredient::getWeight).sum()
                 + this.getSaladDressingIngredientList().stream().mapToDouble(SaladDressingIngredient::getWeight).sum());
-
     }
 
     public List<VegetableIngredient> getVegetableIngredientList() {
@@ -53,23 +52,22 @@ public class Salad extends Food {
         this.fibre = fibre;
     }
 
-
     public String toString() {
         return "Salad\n" +
                 "name = " + name + "\n" +
-                "weight = " + String.format("%.2f",weight) + "g\n" +
+                "weight = " + String.format("%.2f",getWeight()) + "g\n" +
                 "Total: " +
-                "proteins = " + String.format("%.2f",proteins) + "g\n" +
-                "fats = " + String.format("%.2f",fats) + "g\n" +
-                "carbs = " + String.format("%.2f",carbs) + "g\n"+
-                "energy = " + String.format("%.2f",energy) +  "kcal\n"+
-                "fibre = " + String.format("%.2f",fibre)  + "g\n\n" +
+                "proteins = " + String.format("%.2f",getProteins()) + "g\n" +
+                "fats = " + String.format("%.2f",getFats()) + "g\n" +
+                "carbs = " + String.format("%.2f",getCarbs()) + "g\n"+
+                "energy = " + String.format("%.2f",getEnergy()) +  "kcal\n"+
+                "fibre = " + String.format("%.2f",getFibre())  + "g\n\n" +
                 "Per 100 gramm:\n"+
-                "proteins = " + String.format("%.2f",convertTo100(proteins,weight)) + "g\n" +
-                "fats = " + String.format("%.2f",convertTo100(fats,weight)) + "g\n" +
-                "carbs = " + String.format("%.2f",convertTo100(carbs,weight)) + "g\n"+
-                "energy = " + String.format("%.2f",convertTo100(energy,weight)) +  "kcal\n"+
-                "fibre = " + String.format("%.2f",convertTo100(fibre,weight))  + "g\n\n" +
+                "proteins = " + String.format("%.2f",convertTo100(getProteins(),weight)) + "g\n" +
+                "fats = " + String.format("%.2f",convertTo100(getFats(),weight)) + "g\n" +
+                "carbs = " + String.format("%.2f",convertTo100(getCarbs(),weight)) + "g\n"+
+                "energy = " + String.format("%.2f",convertTo100(getEnergy(),weight)) +  "kcal\n"+
+                "fibre = " + String.format("%.2f",convertTo100(getFibre(),weight))  + "g\n\n" +
                 "Salad Ingredients\n " +
                 "-Vegetable:\n" +
                 getVegetableIngredientList().stream()
@@ -80,6 +78,7 @@ public class Salad extends Food {
                         .map(p -> p.getName() + " " + p.getWeight()+"g.\n" )
                         .collect(Collectors.joining());
     }
+
     private double convertTo100(double param, double weight){
         return param*100/weight;
     }

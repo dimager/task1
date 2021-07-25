@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class MySqlDataSourceFactory {
+
     public static MysqlDataSource createMysqlDataSource () {
         MysqlDataSource dataSource = null;
         Properties prop = new Properties();

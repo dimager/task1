@@ -61,11 +61,11 @@ public class Vegetable extends Food {
         return " id = " + this.id +
                 ", name = '" + this.name + '\'' +
                 ", type = " + this.vegetableType +
-                ", proteins = " + String.format("%.2f",this.proteins) +
-                ", fats = " + String.format("%.2f",this.fats) +
-                ", carbs = " + String.format("%.2f",this.carbs) +
-                ", energy = " + String.format("%.2f",this.energy) +
-                ", fibre = " + String.format("%.2f",this.fibre)+"\n";
+                ", proteins = " + String.format("%.2f",getProteins()) +
+                ", fats = " + String.format("%.2f",getFats()) +
+                ", carbs = " + String.format("%.2f",getCarbs()) +
+                ", energy = " + String.format("%.2f",getEnergy()) +
+                ", fibre = " + String.format("%.2f",getFibre())+"\n";
     }
 
 

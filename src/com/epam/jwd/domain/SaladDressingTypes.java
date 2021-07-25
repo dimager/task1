@@ -7,7 +7,6 @@ public enum SaladDressingTypes {
     COMPAUND(2);
 
     int id;
-
     SaladDressingTypes(int id) {
         this.id = id;
     }

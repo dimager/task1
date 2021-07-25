@@ -5,13 +5,13 @@ package com.epam.jwd.domain;
 public class SaladDressingIngredient extends SaladDressing {
     private double weight;
 
-    public SaladDressingIngredient(SaladDressing s, double weight) {
+    public SaladDressingIngredient(SaladDressing saladDressing, double weight) {
         this.setWeight(weight);
-        this.setName(s.getName());
-        this.setEnergy(calculateWithWeight(s.energy, weight));
-        this.setCarbs(calculateWithWeight(s.carbs, weight));
-        this.setFats(calculateWithWeight(s.fats, weight));
-        this.setProteins(calculateWithWeight(s.proteins, weight));
+        this.setName(saladDressing.getName());
+        this.setEnergy(calculateWithWeight(saladDressing.getEnergy(), weight));
+        this.setCarbs(calculateWithWeight(saladDressing.getCarbs(), weight));
+        this.setFats(calculateWithWeight(saladDressing.getFats(), weight));
+        this.setProteins(calculateWithWeight(saladDressing.getProteins(), weight));
     }
 
     public double getWeight() {
