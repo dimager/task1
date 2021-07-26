@@ -5,10 +5,21 @@ import com.epam.jwd.dao.SaladDressingDao;
 import com.epam.jwd.dao.VegetableDao;
 import com.epam.jwd.dao.impl.SaladDressingDaoImpl;
 import com.epam.jwd.dao.impl.VegetableDaoImpl;
-import com.epam.jwd.domain.*;
+import com.epam.jwd.domain.Food;
+import com.epam.jwd.domain.Salad;
+import com.epam.jwd.domain.SaladDressing;
+import com.epam.jwd.domain.SaladDressingIngredient;
+import com.epam.jwd.domain.SaladDressingTypes;
+import com.epam.jwd.domain.Vegetable;
+import com.epam.jwd.domain.VegetableIngredient;
+import com.epam.jwd.domain.VegetableTypes;
 import com.epam.jwd.service.Cooking;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class CookingImpl implements Cooking {
     private Salad salad;

@@ -1,5 +1,4 @@
 package com.epam.jwd.domain;
-import java.io.Serializable;
 
 public  class Food  {
     private double proteins;

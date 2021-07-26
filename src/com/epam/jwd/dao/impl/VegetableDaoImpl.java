@@ -1,5 +1,3 @@
-
-
 package com.epam.jwd.dao.impl;
 
 import com.epam.jwd.dao.DaoException;
@@ -8,7 +6,6 @@ import com.epam.jwd.dao.VegetableDao;
 import com.epam.jwd.domain.Vegetable;
 import com.epam.jwd.domain.VegetableTypes;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,9 +25,9 @@ public class VegetableDaoImpl implements VegetableDao {
         Statement statement = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
+            connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT name,type,proteins,fats,carbs,energy,fibre,id FROM vegetables");
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_VEGETABLES);
 
             while(resultSet.next()) {
                 Vegetable vegetable = new Vegetable();
@@ -60,9 +57,8 @@ public class VegetableDaoImpl implements VegetableDao {
         PreparedStatement preparedStatement = null;
 
         try {
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
             connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
-            preparedStatement = connection.prepareStatement("SELECT name,type,proteins,fats,carbs,energy,fibre,id from vegetables WHERE id=?");
+            preparedStatement = connection.prepareStatement(SQL_SELECT_VEGETABLE_BY_ID);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -92,8 +88,8 @@ public class VegetableDaoImpl implements VegetableDao {
         PreparedStatement preparedStatement = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
-            preparedStatement = connection.prepareStatement("SELECT name,type,proteins,fats,carbs,energy,fibre,id from vegetables WHERE type=?");
+            connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
+            preparedStatement = connection.prepareStatement(SQL_SELECT_VEGETABLE_BY_TYPE);
             preparedStatement.setString(1, vegetableType.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
 

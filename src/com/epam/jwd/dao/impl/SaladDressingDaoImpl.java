@@ -1,5 +1,3 @@
-
-
 package com.epam.jwd.dao.impl;
 
 import com.epam.jwd.dao.DaoException;
@@ -8,7 +6,6 @@ import com.epam.jwd.dao.SaladDressingDao;
 import com.epam.jwd.domain.SaladDressing;
 import com.epam.jwd.domain.SaladDressingTypes;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +29,6 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
         Statement statement = null;
 
         try {
-          //  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
             connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_SALADDRESSINGS);
@@ -63,7 +59,6 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
         PreparedStatement preparedStatement = null;
 
         try {
-//          connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
             connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_SALADDRESSING_BY_ID);
             preparedStatement.setInt(1, id);
@@ -95,7 +90,6 @@ public class SaladDressingDaoImpl implements SaladDressingDao {
         PreparedStatement preparedStatement = null;
 
         try {
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food", "admin", "!Pa$$w0rd");
             connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_SALADDRESSING_BY_TYPE);
             preparedStatement.setString(1, saladDressingType.toString());

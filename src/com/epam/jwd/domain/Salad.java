@@ -1,6 +1,5 @@
 package com.epam.jwd.domain;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 

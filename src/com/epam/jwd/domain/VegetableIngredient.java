@@ -1,4 +1,3 @@
-
 package com.epam.jwd.domain;
 
 public class VegetableIngredient extends Vegetable {
