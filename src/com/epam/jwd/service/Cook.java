@@ -4,7 +4,7 @@ import com.epam.jwd.domain.*;
 
 import java.util.List;
 
-public interface Cooking {
+public interface Cook {
     Salad doSalad(String saladName);
     List<Vegetable> getAllVegetables();
     List<SaladDressing> getAllSaladDressings();

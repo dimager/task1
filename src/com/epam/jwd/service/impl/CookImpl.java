@@ -13,7 +13,7 @@ import com.epam.jwd.domain.SaladDressingType;
 import com.epam.jwd.domain.Vegetable;
 import com.epam.jwd.domain.VegetableIngredient;
 import com.epam.jwd.domain.VegetableType;
-import com.epam.jwd.service.Cooking;
+import com.epam.jwd.service.Cook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class CookingImpl implements Cooking {
+public class CookImpl implements Cook {
     private final VegetableDao vegetableDao = new VegetableDaoImpl();
     private final SaladDressingDao saladDressingDao = new SaladDressingDaoImpl();
     private Salad salad;
@@ -115,8 +115,7 @@ public class CookingImpl implements Cooking {
         List<Vegetable> vegetableList;
         VegetableDao vegetableDao = new VegetableDaoImpl();
         List<VegetableIngredient> vegetableIngredientList = new ArrayList<>();
-        boolean state = true;
-        while (state) {
+        while (true) {
             try {
                 System.out.println("Choose vegetables for salad\nList of vegatable types:");
                 Arrays.stream(VegetableType.values()).map(x -> x.getId() + ". " + x.name()).forEach(System.out::println);
@@ -130,7 +129,6 @@ public class CookingImpl implements Cooking {
                 e.printStackTrace();
             }
         }
-        return null;
     }
 
     //для пропуска выбора заправки через консоль

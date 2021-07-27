@@ -142,24 +142,24 @@ Onion 100.0g.
 Olive oil 50.0g.
 Red Wine vinegar 50.0g.
 
-System.out.println("Salad total energy: " + cooking.calculateSaladEnergy(newSalad));
+System.out.println("Salad total energy: " + cook.calculateSaladEnergy(newSalad));
 Salad total energy: 626.55
 
 
-cooking.sortVegetablesByCarb(newSalad.getVegetableIngredientList());
+cook.sortVegetablesByCarb(newSalad.getVegetableIngredientList());
 Vegetable salad ingredients are sorted by carbs
 Cucumbers 3.75
 Onion 8.0
 Tomatoes 9.75
 Bellpepper 10.6
 
-cooking.findVegetablesByEnergy(newSalad.getVegetableIngredientList(), 30, 300);
+cook.findVegetablesByEnergy(newSalad.getVegetableIngredientList(), 30, 300);
 Total energy of each vegetable in salad (from 30.0kcal to 300.0kcal):
 Onion 38.6
 Tomatoes 52.5
 Bellpepper 54.2
 
- System.out.println(cooking.getAllVegetables());
+ System.out.println(cook.getAllVegetables());
 [ id = 1, name = 'Cauliflower Boiled', type = FLOWER, proteins = 2,90, fats = 0,90, carbs = 2,10, energy = 28,10, fibre = 1,60
 ,  id = 2, name = 'Broccoli Boiled', type = FLOWER, proteins = 3,10, fats = 0,80, carbs = 1,10, energy = 24,00, fibre = 7,00
 ,  id = 3, name = 'Artichoke', type = FLOWER, proteins = 3,30, fats = 0,20, carbs = 10,50, energy = 57,00, fibre = 5,40
@@ -192,7 +192,7 @@ Bellpepper 54.2
 ,  id = 30, name = 'Peanut', type = POD, proteins = 26,00, fats = 49,00, carbs = 16,00, energy = 609,00, fibre = 8,50
 ]
 
-System.out.println(cooking.getAllSaladDressings());
+System.out.println(cook.getAllSaladDressings());
 [ id = 1, name = 'Vegetable oil', type = SIMPLE, proteins = 0.0, fats = 100.0, carbs = 0.0, energy = 900.0
 ,  id = 2, name = 'Olive oil', type = SIMPLE, proteins = 0.0, fats = 100.0, carbs = 0.0, energy = 900.0
 ,  id = 3, name = 'Sour cream 10%', type = SIMPLE, proteins = 2.8, fats = 10.0, carbs = 3.1, energy = 110.0
@@ -212,13 +212,13 @@ System.out.println(cooking.getAllSaladDressings());
 ,  id = 17, name = 'Balsamic vinegar', type = SIMPLE, proteins = 0.0, fats = 0.0, carbs = 17.0, energy = 88.0
 ]
 
-System.out.println(cooking.getVegetablesByType(VegetableType.FLOWER));
+System.out.println(cook.getVegetablesByType(VegetableType.FLOWER));
 [ id = 1, name = 'Cauliflower Boiled', type = FLOWER, proteins = 2,90, fats = 0,90, carbs = 2,10, energy = 28,10, fibre = 1,60
 ,  id = 2, name = 'Broccoli Boiled', type = FLOWER, proteins = 3,10, fats = 0,80, carbs = 1,10, energy = 24,00, fibre = 7,00
 ,  id = 3, name = 'Artichoke', type = FLOWER, proteins = 3,30, fats = 0,20, carbs = 10,50, energy = 57,00, fibre = 5,40
 ]
 
-System.out.println(cooking.getSaladDressingsByType(SaladDressingType.COMPOUND));
+System.out.println(cook.getSaladDressingsByType(SaladDressingType.COMPOUND));
 [ id = 8, name = 'Sesame ginger', type = COMPOUND, proteins = 0.6, fats = 13.5, carbs = 10.5, energy = 165.0
 ,  id = 9, name = 'Balsamic vinaigrette', type = COMPOUND, proteins = 0.0, fats = 54.0, carbs = 1.0, energy = 498.0
 ,  id = 10, name = 'Avocado lime', type = COMPOUND, proteins = 3.0, fats = 21.0, carbs = 7.5, energy = 225.0
@@ -229,11 +229,11 @@ System.out.println(cooking.getSaladDressingsByType(SaladDressingType.COMPOUND));
 ,  id = 15, name = 'Ginger turmeric', type = COMPOUND, proteins = 0.0, fats = 54.0, carbs = 7.5, energy = 516.0
 ]
 
-System.out.println(cooking.getVegetableById(1));
+System.out.println(cook.getVegetableById(1));
 [ id = 1, name = 'Cauliflower Boiled', type = FLOWER, proteins = 2,90, fats = 0,90, carbs = 2,10, energy = 28,10, fibre = 1,60
 ]
 
-System.out.println(cooking.getSaladDressingsById(2));
+System.out.println(cook.getSaladDressingsById(2));
 [ id = 2, name = 'Olive oil', type = SIMPLE, proteins = 0.0, fats = 100.0, carbs = 0.0, energy = 900.0
 ]
 
