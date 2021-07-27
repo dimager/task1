@@ -2,65 +2,49 @@ package com.epam.jwd.domain;
 
 public class SaladDressing extends Food {
     private int id;
-    private String name;
-    private SaladDressingTypes saladDressingTypes;
+    private SaladDressingType saladDressingType;
 
-    public SaladDressing() {
+    public SaladDressingType getSaladDressingTypes() {
+        return this.saladDressingType;
     }
 
-    public SaladDressing(double proteins, double fats, double carbs, String name, SaladDressingTypes saladDressingTypes) {
-        super(proteins, fats, carbs);
-        this.name = name;
-        this.saladDressingTypes = saladDressingTypes;
-    }
-
-    public SaladDressing(double proteins, double fats, double carbs, double energy, String name, SaladDressingTypes saladDressingTypes) {
-        super(proteins, fats, carbs, energy);
-        this.name = name;
-        this.saladDressingTypes = saladDressingTypes;
-    }
-
-    public SaladDressing(SaladDressing s) {
-        this.setId(s.getId());
-        this.setName(s.getName());
-        this.setSaladDressingTypes(s.saladDressingTypes);
-        this.setProteins(s.getProteins());
-        this.setFats(s.getFats());
-        this.setCarbs(s.getCarbs());
-        this.setEnergy(s.getEnergy());
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public SaladDressingTypes getSaladDressingTypes() {
-        return this.saladDressingTypes;
-    }
-
-    public void setSaladDressingTypes(SaladDressingTypes saladDressingTypes) {
-        this.saladDressingTypes = saladDressingTypes;
+    public void setSaladDressingTypes(SaladDressingType saladDressingType) {
+        this.saladDressingType = saladDressingType;
     }
 
     public int getId() {
         return this.id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    @Override
     public String toString() {
         return " id = " + this.id +
-                ", name = '" + this.name + '\'' +
-                ", type = " + this.saladDressingTypes +
+                ", name = '" + getName() + '\'' +
+                ", type = " + this.saladDressingType +
                 ", proteins = " + getProteins() +
                 ", fats = " + getFats() +
                 ", carbs = " + getCarbs() +
                 ", energy = " + getEnergy()  + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        SaladDressing that = (SaladDressing) o;
+        if (id != that.id) return false;
+        return saladDressingType == that.saladDressingType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + id;
+        result = 31 * result + saladDressingType.hashCode();
+        return result;
     }
 }

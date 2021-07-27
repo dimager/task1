@@ -1,27 +1,11 @@
 package com.epam.jwd.domain;
 
 public  class Food  {
+    private String name;
     private double proteins;
     private double fats;
     private double carbs;
     private double energy;
-
-    public Food(double proteins, double fats, double carbs) {
-        this.proteins = proteins;
-        this.fats = fats;
-        this.carbs = carbs;
-        this.energy = calculateEnergy(proteins, fats, carbs);
-    }
-
-    public Food(double proteins, double fats, double carbs, double energy) {
-        this.proteins = proteins;
-        this.fats = fats;
-        this.carbs = carbs;
-        this.energy = energy;
-    }
-
-    public Food() {
-    }
 
     public double getProteins() {
         return this.proteins;
@@ -55,11 +39,49 @@ public  class Food  {
         this.energy = energy;
     }
 
-    private double calculateEnergy(double proteins, double fats, double carbs) {
-        return proteins * 4 + fats * 9 + carbs * 4;
+    public String getName() {
+        return name;
     }
 
-    public static double calculateWithWeight(double param, double weight) {
-        return param * weight / 100;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        if (Double.compare(food.proteins, proteins) != 0) return false;
+        if (Double.compare(food.fats, fats) != 0) return false;
+        if (Double.compare(food.carbs, carbs) != 0) return false;
+        if (Double.compare(food.energy, energy) != 0) return false;
+        return name.equals(food.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = name.hashCode();
+        temp = Double.doubleToLongBits(proteins);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(fats);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(carbs);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(energy);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "proteins=" + proteins +
+                ", fats=" + fats +
+                ", carbs=" + carbs +
+                ", energy=" + energy +
+                '}';
     }
 }

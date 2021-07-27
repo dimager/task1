@@ -1,6 +1,6 @@
 package com.epam.jwd.domain;
 
-public enum VegetableTypes {
+public enum VegetableType {
     FLOWER(1),
     LEAFY(2),
     TUBER(3),
@@ -10,13 +10,13 @@ public enum VegetableTypes {
     FRUIT(7),
     POD(8);
 
-    int id;
+    private int id;
 
     public int getId() {
         return id;
     }
 
-    VegetableTypes(int id) {
+    VegetableType(int id) {
         this.id = id;
     }
 

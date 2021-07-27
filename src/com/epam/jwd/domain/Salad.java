@@ -3,15 +3,16 @@ package com.epam.jwd.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.epam.jwd.service.Calculator.convertTo100;
+
 public class Salad extends Food {
-    private String name;
     private List<VegetableIngredient> vegetableIngredientList;
     private List<SaladDressingIngredient> saladDressingIngredientList;
     private double fibre;
     private double weight;
 
     public Salad(String name, List<VegetableIngredient> vegetableIngredientList, List<SaladDressingIngredient> saladDressingList) {
-        this.name = name;
+        this.setName(name);
         this.vegetableIngredientList = vegetableIngredientList;
         this.saladDressingIngredientList = saladDressingList;
         this.setEnergy(this.getVegetableIngredientList().stream().mapToDouble(Food::getEnergy).sum()
@@ -53,9 +54,9 @@ public class Salad extends Food {
 
     public String toString() {
         return "Salad\n" +
-                "name = " + name + "\n" +
+                "name = " + getName() + "\n" +
                 "weight = " + String.format("%.2f",getWeight()) + "g\n" +
-                "Total: " +
+                "Total:\n " +
                 "proteins = " + String.format("%.2f",getProteins()) + "g\n" +
                 "fats = " + String.format("%.2f",getFats()) + "g\n" +
                 "carbs = " + String.format("%.2f",getCarbs()) + "g\n"+
@@ -78,8 +79,28 @@ public class Salad extends Food {
                         .collect(Collectors.joining());
     }
 
-    private double convertTo100(double param, double weight){
-        return param*100/weight;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Salad salad = (Salad) o;
+        if (Double.compare(salad.fibre, fibre) != 0) return false;
+        if (Double.compare(salad.weight, weight) != 0) return false;
+        if (!vegetableIngredientList.equals(salad.vegetableIngredientList)) return false;
+        return saladDressingIngredientList.equals(salad.saladDressingIngredientList);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        result = 31 * result + vegetableIngredientList.hashCode();
+        result = 31 * result + saladDressingIngredientList.hashCode();
+        temp = Double.doubleToLongBits(fibre);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

@@ -1,18 +1,15 @@
 package com.epam.jwd.dao.impl;
 
 import com.epam.jwd.dao.DaoException;
-import com.epam.jwd.dao.MySqlDataSourceFactory;
 import com.epam.jwd.dao.VegetableDao;
 import com.epam.jwd.domain.Vegetable;
-import com.epam.jwd.domain.VegetableTypes;
+import com.epam.jwd.domain.VegetableType;
+import com.epam.jwd.service.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class VegetableDaoImpl implements VegetableDao {
     private static final String SQL_SELECT_ALL_VEGETABLES = "SELECT name,type,proteins,fats,carbs,energy,fibre,id FROM vegetables";
@@ -20,98 +17,49 @@ public class VegetableDaoImpl implements VegetableDao {
     private static final String SQL_SELECT_VEGETABLE_BY_ID = "SELECT name,type,proteins,fats,carbs,energy,fibre,id from vegetables WHERE id=?";
 
     public List<Vegetable> findAll() throws DaoException {
-        List<Vegetable> vegetables = new ArrayList();
         Connection connection = null;
         Statement statement = null;
-
         try {
-            connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
+            connection = Dao.createMysqlDataSource().getConnection();
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_VEGETABLES);
-
-            while(resultSet.next()) {
-                Vegetable vegetable = new Vegetable();
-                vegetable.setId(resultSet.getInt(8));
-                vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
-                vegetable.setProteins(resultSet.getDouble(3));
-                vegetable.setFats(resultSet.getDouble(4));
-                vegetable.setCarbs(resultSet.getDouble(5));
-                vegetable.setEnergy(resultSet.getDouble(6));
-                vegetable.setFibre(resultSet.getDouble(7));
-                vegetables.add(vegetable);
-            }
+            return Dao.getSaladDressingFromDatabaseToList(statement.executeQuery(SQL_SELECT_ALL_VEGETABLES));
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
             close(statement);
             close(connection);
         }
-
-        return vegetables;
     }
 
-    public Vegetable findById(int id) throws DaoException {
-        Vegetable vegetable = new Vegetable();
+    public List<Vegetable> findById(int id) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-
         try {
-            connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
+            connection = Dao.createMysqlDataSource().getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_VEGETABLE_BY_ID);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                vegetable.setId(resultSet.getInt(8));
-                vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
-                vegetable.setProteins(resultSet.getDouble(3));
-                vegetable.setFats(resultSet.getDouble(4));
-                vegetable.setCarbs(resultSet.getDouble(5));
-                vegetable.setEnergy(resultSet.getDouble(6));
-                vegetable.setFibre(resultSet.getDouble(7));
-            }
+            return Dao.getSaladDressingFromDatabaseToList(preparedStatement.executeQuery());
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
             close(preparedStatement);
             close(connection);
         }
-
-        return vegetable;
     }
 
-    public List<Vegetable> findByType(VegetableTypes vegetableType) throws DaoException {
-        List<Vegetable> vegetables = new ArrayList();
+    public List<Vegetable> findByType(VegetableType vegetableType) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-
         try {
-            connection = MySqlDataSourceFactory.createMysqlDataSource().getConnection();
+            connection = Dao.createMysqlDataSource().getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_VEGETABLE_BY_TYPE);
             preparedStatement.setString(1, vegetableType.toString());
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                Vegetable vegetable = new Vegetable();
-                vegetable.setId(resultSet.getInt(8));
-                vegetable.setName(resultSet.getString(1));
-                vegetable.setVegetableType(VegetableTypes.valueOf(resultSet.getString(2).toUpperCase(Locale.ROOT)));
-                vegetable.setProteins(resultSet.getDouble(3));
-                vegetable.setFats(resultSet.getDouble(4));
-                vegetable.setCarbs(resultSet.getDouble(5));
-                vegetable.setEnergy(resultSet.getDouble(6));
-                vegetable.setFibre(resultSet.getDouble(7));
-                vegetables.add(vegetable);
-            }
+            return Dao.getSaladDressingFromDatabaseToList(preparedStatement.executeQuery());
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
             this.close(preparedStatement);
             this.close(connection);
         }
-
-        return vegetables;
     }
 }

@@ -5,14 +5,17 @@ import com.epam.jwd.domain.*;
 import java.util.List;
 
 public interface Cooking {
-    Salad doSalad();
+    Salad doSalad(String saladName);
     List<Vegetable> getAllVegetables();
     List<SaladDressing> getAllSaladDressings();
-    List<Vegetable> getVegetablesByType(VegetableTypes type);
-    List<SaladDressing> getSaladDressingsByType(SaladDressingTypes type);
-    Vegetable getVegetableById(int id);
-    SaladDressing getSaladDressingsById(int id);
-    void calculateSaladEnergy(Salad salad);
+    List<Vegetable> getVegetablesByType(VegetableType type);
+    List<SaladDressing> getSaladDressingsByType(SaladDressingType type);
+    List<Vegetable> getVegetableById(int id);
+    List<SaladDressing> getSaladDressingsById(int id);
+    //Посчитать калорийность.
+    double calculateSaladEnergy(Salad salad);
+    //Провести сортировку овощей для салата на основе одного из параметров(по углеводам).
     void sortVegetablesByCarb(List<VegetableIngredient> vegetableIngredients);
-    void findVegetablesByEnergy(List<VegetableIngredient> vegetableIngredients, double l, double h);
+    //Найти овощи в салате, соответствующие заданному диапазону калорийности (по общей каллорийности овоща в салате).
+    void findVegetablesByEnergy(List<VegetableIngredient> vegetableIngredients, double lowerLimit, double upperLimit);
 }
