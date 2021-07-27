@@ -25,37 +25,32 @@ public class CookingImpl implements Cooking {
     private final VegetableDao vegetableDao = new VegetableDaoImpl();
     private final SaladDressingDao saladDressingDao = new SaladDressingDaoImpl();
     private Salad salad;
-    private List<Vegetable> vegetableList = new ArrayList();
-    private List<SaladDressing> saladDressingList = new ArrayList();
-    private List<VegetableIngredient> vegetableIngredients = null;
-    private List<SaladDressingIngredient> saladDressingIngredients = null;
     private Scanner scanner = new Scanner(System.in);
-
-    public CookingImpl() {
-        try {
-            this.vegetableList = vegetableDao.findAll();
-            this.saladDressingList = saladDressingDao.findAll();
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public Salad doSalad(String saladName) {
-        this.vegetableIngredients = getVegetablesForSalad();
-        this.saladDressingIngredients = getSaladDressingsForSalad();
-        this.salad = new Salad(saladName, this.vegetableIngredients, this.saladDressingIngredients);
-        return this.salad;
+        this.salad = new Salad(saladName, getVegetablesForSalad(), getSaladDressingsForSalad());
+        return salad;
     }
 
     @Override
     public List<Vegetable> getAllVegetables() {
-        return vegetableList;
+        try {
+            return vegetableDao.findAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public List<SaladDressing> getAllSaladDressings() {
-        return saladDressingList;
+        try {
+            return saladDressingDao.findAll();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -81,31 +76,6 @@ public class CookingImpl implements Cooking {
     }
 
     @Override
-    public List<Vegetable> getVegetableById(int id) {
-        List<Vegetable> vegetable = null;
-        try {
-            vegetable = vegetableDao.findById(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return vegetable;
-    }
-    //для пропуска выбора овощей через консоль
-    /*
-    private List<VegetableIngredient> getVegetablesForSalad() {
-        //имитация выбора ингридиентов
-        List<VegetableIngredient> ingredients = new ArrayList();
-        try {
-        ingredients.add(new VegetableIngredient(vegetableDao.findById(25), 300));
-        ingredients.add(new VegetableIngredient(vegetableDao.findById(24), 200));
-        ingredients.add(new VegetableIngredient((vegetableDao.findById(26)), 150));
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return ingredients;
-    }*/
-
-    @Override
     public List<SaladDressing> getSaladDressingsById(int id) {
         List<SaladDressing> saladDressing = null;
         try {
@@ -116,6 +86,30 @@ public class CookingImpl implements Cooking {
         return saladDressing;
     }
 
+    @Override
+    public List<Vegetable> getVegetableById(int id) {
+        List<Vegetable> vegetable = null;
+        try {
+            vegetable = vegetableDao.findById(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
+        return vegetable;
+    }
+
+    //для пропуска выбора овощей через консоль
+   /* private List<VegetableIngredient> getVegetablesForSalad() {
+        //имитация выбора ингридиентов
+        List<VegetableIngredient> ingredients = new ArrayList();
+        getVegetableById(25).stream()
+                .forEach(x -> ingredients.add(new VegetableIngredient(x, 300)));
+        getVegetableById(24).stream()
+                .forEach(x -> ingredients.add(new VegetableIngredient(x, 250)));
+        getVegetableById(26).stream()
+                .forEach(x -> ingredients.add(new VegetableIngredient(x, 150)));
+        return ingredients;
+    }*/
+
     //для  выбора овощей через консоль
     private List<VegetableIngredient> getVegetablesForSalad() {
         List<Vegetable> vegetableList;
@@ -125,9 +119,9 @@ public class CookingImpl implements Cooking {
         while (state) {
             try {
                 System.out.println("Choose vegetables for salad\nList of vegatable types:");
-                Arrays.stream(VegetableType.values()).map(v -> v.getId() + ". " + v.name()).forEach(System.out::println);
+                Arrays.stream(VegetableType.values()).map(x -> x.getId() + ". " + x.name()).forEach(System.out::println);
                 vegetableList = vegetableDao.findByType(VegetableType.values()[getTypeFromConsole() - 1]);
-                vegetableList.stream().map(v -> v.getId() + " " + v.getName()).forEach(System.out::println);
+                vegetableList.stream().map(x -> x.getId() + ". " + x.getName()).forEach(System.out::println);
                 List<Vegetable> vegetables = vegetableDao.findById(getIdFromConsole());
                 vegetables.stream().forEach(x -> vegetableIngredientList.add(new VegetableIngredient(x, getWeightFromConsole())));
                 if (doDecisionExitOrNext())
@@ -138,22 +132,20 @@ public class CookingImpl implements Cooking {
         }
         return null;
     }
-    //для пропуска выбора заправки через консоль
-      /* private List<SaladDressingIngredient> getSaladDressingsForSalad() {
 
+    //для пропуска выбора заправки через консоль
+   /* private List<SaladDressingIngredient> getSaladDressingsForSalad() {
         List<SaladDressingIngredient> saladDressings = new ArrayList();
-        try {
-            saladDressings.add(new SaladDressingIngredient(saladDressingDao.findById(1), 30));
-            saladDressings.add(new SaladDressingIngredient(saladDressingDao.findById(5), 40));
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+        getSaladDressingsById(1).stream()
+                .forEach(x -> saladDressings.add(new SaladDressingIngredient(x, 30)));
+        getSaladDressingsById(5).stream()
+                .forEach(x -> saladDressings.add(new SaladDressingIngredient(x, 30)));
         return saladDressings;
-     }*/
+    }*/
+
 
     //для выбора заправки через консоль
     private List<SaladDressingIngredient> getSaladDressingsForSalad() {
-        Scanner scanner = new Scanner(System.in);
         List<SaladDressing> saladDressings;
         SaladDressingDao saladDressingDao = new SaladDressingDaoImpl();
         List<SaladDressingIngredient> saladDressingIngredientList = new ArrayList();
@@ -163,17 +155,23 @@ public class CookingImpl implements Cooking {
                 case 1:
                     while (true) {
                         saladDressings = saladDressingDao.findByType(SaladDressingType.values()[saladDressingId - 1]);
-                        saladDressings.stream().map(v -> v.getId() + " " + v.getName()).forEach(System.out::println);
-                        List<SaladDressing> sd = saladDressingDao.findById(getIdFromConsole());
-                        sd.stream().forEach(x -> saladDressingIngredientList.add(new SaladDressingIngredient(x, getWeightFromConsole())));
+                        saladDressings.stream()
+                                .map(x -> x.getId() + " " + x.getName())
+                                .forEach(System.out::println);
+                        List<SaladDressing> saladDressing = saladDressingDao.findById(getIdFromConsole());
+                        saladDressing.stream()
+                                .forEach(x -> saladDressingIngredientList.add(new SaladDressingIngredient(x, getWeightFromConsole())));
                         if (doDecisionExitOrNext())
                             return saladDressingIngredientList;
                     }
                 case 2:
                     saladDressings = saladDressingDao.findByType(SaladDressingType.values()[saladDressingId - 1]);
-                    saladDressings.stream().map(v -> v.getId() + " " + v.getName()).forEach(System.out::println);
+                    saladDressings.stream()
+                            .map(x -> x.getId() + " " + x.getName())
+                            .forEach(System.out::println);
                     List<SaladDressing> sd = saladDressingDao.findById(getIdFromConsole());
-                    sd.stream().forEach(i -> saladDressingIngredientList.add(new SaladDressingIngredient(i, getWeightFromConsole())));
+                    sd.stream()
+                            .forEach(x -> saladDressingIngredientList.add(new SaladDressingIngredient(x, getWeightFromConsole())));
                     return saladDressingIngredientList;
             }
         } catch (DaoException e) {
@@ -221,26 +219,28 @@ public class CookingImpl implements Cooking {
     }
 
     private int getWeightFromConsole() {
-        System.out.println("Enter weight:");
+        System.out.print("Enter weight: ");
         return scanner.nextInt();
     }
 
     private int getIdFromConsole() {
-        System.out.println("Select id");
+        System.out.print("Select id: ");
         return scanner.nextInt();
     }
 
     private int getTypeFromConsole() {
-        System.out.println("Select type of vegetables:");
+        System.out.print("Select type of vegetables: ");
         return scanner.nextInt();
     }
 
     private int selectSaladDressingType() {
-        System.out.println("Choose salad dressing for salad\nList of salad dressing types:");
+        System.out.println("Choose salad dressing for salad\nList of salad dressing types: ");
         int typeid;
         do {
-            Arrays.stream(SaladDressingType.values()).map(v -> v.getId() + ". " + v.name()).forEach(System.out::println);
-            System.out.println("Select type of salad dressing:");
+            Arrays.stream(SaladDressingType.values())
+                    .map(x -> x.getId() + ". " + x.name())
+                    .forEach(System.out::println);
+            System.out.print("Select type of salad dressing: ");
             typeid = scanner.nextInt();
         }
         while (typeid == 0 & typeid == 1);

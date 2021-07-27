@@ -1,6 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `food` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `food`;
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
--- Host: mager.keenetic.pro    Database: food
+-- Host: localhost    Database: food
 -- ------------------------------------------------------
 -- Server version	8.0.25
 
@@ -31,7 +33,7 @@ CREATE TABLE `saladdressing` (
   `carbs` double NOT NULL,
   `energy` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +42,7 @@ CREATE TABLE `saladdressing` (
 
 LOCK TABLES `saladdressing` WRITE;
 /*!40000 ALTER TABLE `saladdressing` DISABLE KEYS */;
-INSERT INTO `saladdressing` VALUES (1,'Vegetable oil','simple',0,100,0,900),(2,'Olive oil','simple',0,100,0,900),(3,'Sour cream 10%','simple',2.8,10,3.1,110),(4,'Sour cream 20%','simple',2.5,20,2.9,200),(5,'Lemon juice','simple',0.9,0.1,3,16),(6,'Mayo','simple',3.1,67,2.6,624),(7,'Greek yogurt','simple',5,3.2,3.5,66),(8,'Sesame ginger','compaund',0.6,13.5,10.5,165),(9,'Balsamic vinaigrette','compaund',0,54,1,498),(10,'Avocado lime','compaund',3,21,7.5,225),(11,'Lemon vinaigrette','compaund',0,40.5,9,400),(12,'Honey mustard','compaund',0,27,40.5,400),(13,'Greek yogurt ranch','compaund',3,6,6,90),(14,'Apple cider vinaigrette','compaund',0,36,3,336),(15,'Ginger turmeric','compaund',0,54,7.5,516);
+INSERT INTO `saladdressing` VALUES (1,'Vegetable oil','simple',0,100,0,900),(2,'Olive oil','simple',0,100,0,900),(3,'Sour cream 10%','simple',2.8,10,3.1,110),(4,'Sour cream 20%','simple',2.5,20,2.9,200),(5,'Lemon juice','simple',0.9,0.1,3,16),(6,'Mayo','simple',3.1,67,2.6,624),(7,'Greek yogurt','simple',5,3.2,3.5,66),(8,'Sesame ginger','compound',0.6,13.5,10.5,165),(9,'Balsamic vinaigrette','compound',0,54,1,498),(10,'Avocado lime','compound',3,21,7.5,225),(11,'Lemon vinaigrette','compound',0,40.5,9,400),(12,'Honey mustard','compound',0,27,40.5,400),(13,'Greek yogurt ranch','compound',3,6,6,90),(14,'Apple cider vinaigrette','compound',0,36,3,336),(15,'Ginger turmeric','compound',0,54,7.5,516),(16,'Red Wine vinegar','simple',0,0,6,14),(17,'Balsamic vinegar','simple',0,0,17,88);
 /*!40000 ALTER TABLE `saladdressing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-26  9:14:48
+-- Dump completed on 2021-07-27 15:05:26
