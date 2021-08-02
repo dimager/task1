@@ -118,7 +118,7 @@ public class CookImpl implements Cook {
         while (true) {
             try {
                 System.out.println("Choose vegetables for salad\nList of vegatable types:");
-                Arrays.stream(VegetableType.values()).map(x -> x.getId() + ". " + x.name()).forEach(System.out::println);
+                Arrays.stream(VegetableType.values()).map(x -> x.ordinal()+1 + ". " + x.name()).forEach(System.out::println);
                 vegetableList = vegetableDao.findByType(VegetableType.values()[getTypeFromConsole() - 1]);
                 vegetableList.stream().map(x -> x.getId() + ". " + x.getName()).forEach(System.out::println);
                 List<Vegetable> vegetables = vegetableDao.findById(getIdFromConsole());
@@ -236,7 +236,7 @@ public class CookImpl implements Cook {
         int typeid;
         do {
             Arrays.stream(SaladDressingType.values())
-                    .map(x -> x.getId() + ". " + x.name())
+                    .map(x -> x.ordinal()+1 + ". " + x.name())
                     .forEach(System.out::println);
             System.out.print("Select type of salad dressing: ");
             typeid = scanner.nextInt();
